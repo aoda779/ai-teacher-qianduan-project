@@ -1,0 +1,1 @@
+这是前端的代码，已经实现前后端的联调功能，其中的实现技术是html,css,javascript以及ajax
