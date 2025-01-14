@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>注册</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="firsttitle">智阅专辅</p>
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-12 mx-auto tm-login-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h2 class="tm-block-title mb-4">欢迎注册</h2>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <form id="enrollForm" method="post" class="tm-login-form">
+                  <div class="form-group">
+                    <label for="account">账户</label>
+                    <input
+                      name="account"
+                      type="text"
+                      class="form-control validate"
+                      id="account"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-3">
+                    <label for="password">密码</label>
+                    <input
+                      name="password"
+                      type="password"
+                      class="form-control validate"
+                      id="password"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-3">
+                    <label for="confirmPassword">请再次输入密码</label>
+                    <input
+                      name="confirmPassword"
+                      type="password"
+                      class="form-control validate"
+                      id="confirmPassword"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block text-uppercase"
+                    >
+                      注册
+                    </button>
+                  </div>
+                  <div id="message" class="message"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+      $(document).ready(function() {
+        $('#enrollForm').submit(function(event) {
+          event.preventDefault(); // 阻止默认的表单提交行为
+
+          // 获取表单数据并转换为 JSON 格式
+          let password = $('#password').val();
+          let confirmPassword = $('#confirmPassword').val();
+          if (password !== confirmPassword){
+            $('#message').removeClass('success').addClass('error').text('两次输入的密码不一致');
+            return;
+          }
+          var formData = {
+            account: $('#account').val(),
+            password: password
+          };
+
+          // 使用 AJAX 提交表单数据
+          $.ajax({
+            url: 'http://localhost:8080/user-info/register', // 数据接口地址
+            method: 'POST',
+            data: JSON.stringify(formData), // 将 JavaScript 对象转换为 JSON 字符串
+            contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+            success: function(response) {
+              // 处理服务器返回的数据
+              if (response.code == 200) {
+                $('#message').removeClass('error').addClass('success').text(response.message);
+                login(JSON.stringify(formData));
+                // 跳转到 login.html 页面
+                window.location.href = 'collectinformation.html';
+              } else {
+                $('#message').removeClass('success').addClass('error').text(response.message);
+              }
+            },
+            error: function(xhr, status, error) {
+              console.error('AJAX 请求失败:', status, error);
+              $('#message').removeClass('success').addClass('error').text('请求失败，请稍后再试');
+            }
+          });
+        });
+
+        //login(data) 并不是立即执行的，而是作为注册流程的一部分，在确认新用户成功注册之后才被执行。
+        //login(data) 函数负责与服务器通信，验证用户凭据，并在登录成功时保存必要的认证信息
+        // 以便后续的页面或请求能够识别已认证的用户。
+        function login(data){
+          $.ajax({
+            url: 'http://localhost:8080/user-info/login', // 数据接口地址
+            method: 'POST',
+            data: data,
+            async: false,
+            contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+            success: function(response) {
+              // 处理服务器返回的数据
+              if (response.code == 200) {
+                // 将用户信息存储在 localStorage 中
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem(response.data.token, JSON.stringify(response.data));
+              }
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

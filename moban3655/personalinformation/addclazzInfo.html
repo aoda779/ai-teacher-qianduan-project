@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="../layui/css/layui.css" rel="stylesheet">
+    <style>
+        .layui-btn-primary {
+            border-color: #d2d2d2;
+            background: none;
+            color: #5F5F5F !important;
+        }
+
+        .layui-form-item {
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="demo-val-filter">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">学校</label>
+        <div class="layui-input-block">
+            <input type="text" name="schoolName" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">年级</label>
+        <div class="layui-input-block">
+            <input type="text" name="grade" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">负责班级</label>
+        <div class="layui-input-block">
+            <input type="text" name="clazzName" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <select name="userId" id="userId" lay-filter="aihao">
+                <option value="">请选择</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use(['form', 'laydate', 'util', 'jquery'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        let token = localStorage.getItem('token');
+
+        function getUrlParams() {
+            const url = new URL(window.location.href);
+            return new URLSearchParams(url.search);
+        }
+
+        let params = getUrlParams();
+        let id = params.get('id');
+
+        // 表单赋值
+        let assignment = function () {
+            //// 检查 URL 参数中的 id 是否存在且不等于 'undefined'，以区分新增和编辑操作
+            if (id !== 'undefined') {
+                layui.$.ajax({
+                    url: 'http://localhost:8080/clazz-info/get/detail?id=' + id,//// 请求 URL，包含查询参数 id
+                    type: 'GET',
+                    headers: {
+                        token: token
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result.code == 200) {
+                            console.log('查询成功');
+                            let data = result.data;
+                            if (data) {
+                                form.val('demo-val-filter', {
+                                    "schoolName": data.schoolName,
+                                    "grade": data.grade,
+                                    "clazzName": data.clazzName,
+                                    "userId": data.userId,
+                                });
+                                form.render()//// 重新渲染表单，使更改生效
+                            }
+                        }
+                    },
+                    error: function (err) {
+                        console.error('请求失败:', err);
+                        layer.msg('请求失败');//// 向用户显示一个简短的消息，告知他们请求失败
+                    }
+                })
+            }
+            //// 发送 AJAX 请求获取所有用户的列表信息
+            layui.$.ajax({
+                url: 'http://localhost:8080/user-info/get/all/list',
+                type: 'GET',
+                headers: {
+                    token: token
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 200) {
+                        console.log('查询成功');
+                        let selectEvent = layui.$('#userId')[0];
+                        let data = result.data;
+                        if (data){
+                            for (let i = 0; i < data.length; i++) {
+                                let option = document.createElement("option");
+                                option.value=data[i].id;
+                                option.text=data[i].userName;
+                                selectEvent.appendChild(option);
+                            }
+                        }
+                        form.render('select');
+                    }
+                },
+                error: function (err) {
+                    console.error('请求失败:', err);
+                    layer.msg('请求失败');
+                }
+            })
+        }
+
+        // 渲染表单
+        form.render();
+        // 渲染完毕后自动执行的方法
+        assignment();
+
+        // 提交事件
+        form.on('submit(demo1)', function (data) {
+            var field = data.field; // 获取表单字段值
+            if (id !== 'undefined'){
+                field.id=id;
+            }
+            // 显示填写结果，仅作演示用
+            // layer.alert(JSON.stringify(field), {
+            //     title: '当前填写的字段值'
+            // });
+            let index = parent.layer.getFrameIndex(window.name);
+
+            // 此处可执行 Ajax 等操作
+            layui.$.ajax({
+                url: 'http://localhost:8080/clazz-info/save-or-up',
+                type: 'POST',
+                contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+                data: JSON.stringify(field),
+                async: false,
+                headers: {
+                    token: token
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 200) {
+                        console.log('编辑成功');
+                        parent.layer.close(index);
+                    } else {
+                        layer.msg('编辑失败')
+                    }
+                },
+                error: function (err) {
+                    console.error('请求失败:', err);
+                    layer.msg('编辑失败');
+                }
+            });
+            // …
+            return false; // 阻止默认 form 跳转
+        });
+
+    });
+</script>
+
+</body>
+</html>

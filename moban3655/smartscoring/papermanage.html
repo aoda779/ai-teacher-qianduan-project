@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>试卷管理</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="../css/templatemo-style.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../iconfont2/iconfont.css">
+
+    <style>
+        
+        select[lay-ignore] {
+            margin-left: 0px;
+            font-size: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 86%;
+        }
+        .studentmanagement{
+            height: 710px;
+        }
+        .clicked {
+            background-color: #4CAF50;
+            /* 绿色 */
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+      <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+            <a class="navbar-brand" href="#">
+                <h1 class="tm-site-title mb-0">智阅专辅</h1>
+            </a>
+            <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars tm-nav-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto h-100">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="fas iconfont icon-biaoshilei_yonghuzu
+                          "></i> 考生管理
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="./papersubmit.html" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far iconfont icon-jiqiren"></i>
+                            <span>
+                                智慧阅卷 <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="./papersubmit.html">试卷上传</a>
+                            <a class="dropdown-item" href="./rules.html">批阅规则</a>
+                            <a class="dropdown-item" href="./papercheck.html">阅卷复核</a>
+                            <a class="dropdown-item" href="./papermanage.html">试卷管理</a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas iconfont icon-shuji
+                          "></i>
+                          <span>
+                              教师阅卷 <i class="fas fa-angle-down"></i>
+                          </span>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../teacherscoring/paperread.html">阅卷</a>
+
+                          <a class="dropdown-item" href="#">阅卷结果</a>
+
+                      </div>
+                  </li>
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas iconfont icon-anquan
+                          "></i>
+                          <span>
+                              数据报告 <i class="fas fa-angle-down"></i>
+                          </span>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../scoringpaper/studentreport.html">学生报告</a>
+                          <a class="dropdown-item" href="../scoringpaper/classreport.html">班级报告</a>
+                          <a class="dropdown-item" href="../scoringpaper/gradescoring.html">科目报告</a>
+
+                      </div>
+                  </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas iconfont icon-yonghu
+                            "></i>
+                            <span>
+                                个人信息 <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../personalinformation/owninformation.html">个人信息</a>
+                            <a class="dropdown-item" href="../personalinformation/classinformation.html">班级管理</a>
+
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-block" href="../login.html">
+                            <b>退出登录</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- 下面是四个按钮 -->
+        <div class="button4-container">
+            <button class="button4"   onclick="navigateTo('papersubmit.html')">试卷上传</button>
+            <button class="button4"   onclick="navigateTo('rules.html')">批阅规则</button>
+            <button class="button4"   onclick="navigateTo('papercheck.html')">阅卷复核</button>
+            <button class="button4"   onclick="navigateTo('papermanage.html')">试卷管理</button>
+        </div>
+        <div class="container">
+
+            <div class="studentmanagement">
+                <div style="height: 10%">
+                    <div
+                        style="display: inline-block;margin-left: 40px;  background-color: white; border-radius: 21px;width: 55px;margin-top: 5px; white-space: nowrap;">
+                        <i class="iconfont icon-shuji" style=" margin-left:11px;  font-size: 33px;"></i>
+                    </div>
+                    <span style="color: white;font-size: 24px;margin-left: 12px;"> 试卷管理</span>
+                </div>
+<!--                <div>-->
+
+<!--                    <div style="position: relative; display: inline-block;">-->
+<!--                        <input type="text" size="32" maxlength="35" placeholder="搜索班级/科目/年级"-->
+<!--                            style="padding-right: 35px;margin-left: 156px;" />-->
+<!--                        <i class="iconfont2 icon-fangdajing"-->
+<!--                            style="font-size: 25px; color: black; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <form class="layui-form layui-row layui-col-space16">
+                    <div class="test-table-reload-btn layui-inline" style="float: right;margin-right: 1%;">
+                        <div class="layui-inline">
+                            <input class="layui-input " style="height: 30px;border-radius:10px;" type="text"
+                                   name="id" id="test-table-demoReload" autocomplete="on" placeholder="搜索班级/科目/试卷名称">
+                        </div>
+                        <button style="height: 30px;line-height: 30px;" lay-submit lay-filter="demo-table-search"
+                                class="layui-btn layui-btn-radius" lay-event="reloadData">搜索
+                        </button>
+                    </div>
+                </form>
+                <!-- 这里是下面的大表格 -->
+                <table class="layui-hide" id="test-table-reload"></table>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <script>
+        function setActive(button) {
+          // 移除所有按钮的 'active' 类
+          document.querySelectorAll('.button4').forEach(btn => btn.classList.remove('active4'));
+          // 给点击的按钮添加 'active' 类
+          button.classList.add('active4');
+        }
+      </script>
+    <script>
+        // 这里是类选择器
+        document.querySelectorAll('.toggleButton').forEach(button => {
+            button.addEventListener('click', function () {
+                this.classList.toggle('clicked');
+            });
+        });
+    </script>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+     <script src="../js/jquery-3.3.1.min.js"></script>
+     <!-- https://jquery.com/download/ -->
+     <script src="../js/moment.min.js"></script>
+     <!-- https://momentjs.com/ -->
+     <script src="../js/Chart.min.js"></script>
+     <!-- http://www.chartjs.org/docs/latest/ -->
+     <script src="../js/bootstrap.min.js"></script>
+     <!-- https://getbootstrap.com/ -->
+     <script src="../js/tooplate-scripts.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontColor = 'white';
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart,
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+
+            $(window).resize(function () {
+                updateLineChart();
+                updateBarChart();
+            });
+        })
+    </script>
+    <script src="../layui/layui.js"></script>
+    <script type="text/html" id="TPL-treeTable-demo">
+        <div class="test-table-reload-btn layui-inline">
+<!--            importpaper.html-->
+            <button class="button2" lay-event="navigate">手动录入</button>
+            <button class="button2" lay-event="getCheckData">批量删除</button>
+        </div>
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <!--        <input type="checkbox" name="demoTableSwitch" lay-skin="switch" {{ d.demoTableSwitch }}>-->
+    </script>
+    <script>
+        layui.use(['table', 'laydate', 'layer','form'], function(){
+            var treeTable = layui.table;
+            var form = layui.form;
+            var layer = layui.layer;
+            let token = localStorage.getItem('token');
+
+            // 渲染
+            var inst = treeTable.render({
+                elem: '#test-table-reload',
+                url: 'http://localhost:8080/paper-manage/page',
+                maxHeight: '600px',
+                toolbar: '#TPL-treeTable-demo',
+                response: {
+                    statusCode: 200 // 重新规定成功的状态码为 200，table 组件默认为 0
+                },
+                parseData: function (res) {
+                    return {
+                        "code": res.code,
+                        "msg": res.message,
+                        "count": res.data.total,
+                        "data": res.data.items
+                    };
+                },
+                cols: [[
+                    {type: 'checkbox', fixed: 'left'},
+                    {type: 'numbers', fixed: 'left'},
+                    {field: 'name', title: '试卷名称', width: 180},
+                    {field: 'clazzName', title: '班级', width: 150},
+                    {field: 'grade', title: '年级', width: 100},
+                    {field: 'subjectName', title: '科目', width: 100},
+                    {field: 'paperTime', title: '时间', width: 170,sort: true},
+                    {fixed: 'right', title:'操作', toolbar: '#barDemo', width: 160}
+                ]],
+                page: true,
+                headers:{
+                    token: token
+                }
+            });
+
+            // 表头工具栏工具事件
+            treeTable.on('toolbar('+ inst.config.id +')', function (obj) {
+              var config = obj.config;
+              var tableId = config.id;
+              var checkStatus = treeTable.checkStatus(tableId);
+                if (obj.event === "reloadData") {
+                    active['reload'].call(this);
+                }
+                else if (obj.event === "navigate"){
+                    layer.open({
+                        type: 2,
+                        title: '新建试卷',
+                        content: './addpaper.html',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['600px', '400px'],
+                        end: function (layero, index) {
+                            active['reload'].call(this);
+                        }
+                    })
+                }
+                else if (obj.event === "getCheckData") {
+                    // layer.alert(layui.util.escape(JSON.stringify(checkStatus.data)));
+                    removeData(checkStatus.data);
+                }
+            });
+
+            var $ = layui.$, active = {
+                reload: function(){
+                    var demoReload = $('#test-table-demoReload');
+
+                    //执行重载
+                    treeTable.reload('test-table-reload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        ,where: {
+                            param: demoReload.val()
+                        }
+                    });
+                }
+            };
+
+            $('.test-table-reload-btn .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+            // 触发单元格工具事件
+            treeTable.on('tool(test-table-reload)', function(obj){ // 双击 toolDouble
+                var data = obj.data;
+                // console.log(obj)
+                if (obj.event === 'edit') {
+                    layer.open({
+                        type: 2,
+                        title: '新建试卷',
+                        content: './addpaper.html?id='+data.id,
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['600px', '400px'],
+                        end: function (layero, index) {
+                            active['reload'].call(this);
+                        }
+                    })
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function(index){
+                        removeData([data],this);
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
+
+            // 触发表格复选框选择
+            treeTable.on('checkbox(test-table-reload)', function(obj){
+                console.log(obj)
+            });
+
+            // 批量删除数据 入参为行对象
+            let removeData = function (data,obj) {
+                $.ajax({
+                    url: 'http://localhost:8080/paper-manage/remove/batch',
+                    type: 'POST',
+                    contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+                    data: JSON.stringify(data),
+                    async: false,
+                    headers: {
+                        token: token
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result.code == 200) {
+                            console.log('删除成功');
+                            active['reload'].call(obj);
+                        } else {
+                            layer.msg('删除失败')
+                        }
+                    },
+                    error: function (err) {
+                        console.error('请求失败:', err);
+                        layer.msg('删除失败');
+                    }
+                });
+            }
+
+            // 搜索提交
+            form.on('submit(demo-table-search)', function() {
+                active['reload'].call(this);
+                return false; // 阻止默认 form 跳转
+            });
+        });
+        function changeButton(button, url) {
+            // 添加一个类来改变样式
+            button.classList.add("clicked");
+
+            // 如果你想移除之前的点击效果，可以在一定时间后移除类
+            // 使用setTimeout确保样式变化在跳转前可见
+            setTimeout(function () {
+                // 执行页面跳转
+                window.location.href = url;
+            }, 100); // 设置短暂延迟以确保用户看到样式变化
+        }
+    </script>
+</body>
+
+</html>

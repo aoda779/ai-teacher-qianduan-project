@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>登录</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+  </head>
+
+  <body>
+
+   <p class="firsttitle">智阅专辅</p>
+    <div class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-12 mx-auto tm-login-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h2 class="tm-block-title mb-4" style="font-size: 50px;">欢迎登录</h2>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <form id="loginForm" method="post" class="tm-login-form">
+                  <div class="form-group">
+                    <label for="account">账户</label>
+                    <input
+                      name="account"
+                      type="text"
+                      class="form-control validate"
+                      id="account"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-3">
+                    <label for="password">密码</label>
+                    <input
+                      name="password"
+                      type="password"
+                      class="form-control validate"
+                      id="password"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block text-uppercase"
+                    >
+                      登录
+                    </button>
+                  </div>
+                  <button onclick="window.location.href = 'enroll.html'" class="mt-5 btn btn-primary btn-block text-uppercase">
+                   注册
+                  </button>
+                </form>
+                <div id="message" class="message"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+      //一个jQuery方法，用于确保页面上的DOM元素已经完全加载完毕后执行指定的函数
+      $(document).ready(function() {
+        //确保新的登录过程不受旧数据的影响
+        //localStorage：存储的数据除非用户手动删除，否则是一直存在的
+        localStorage.clear();
+        $('#loginForm').submit(function(event) {
+          event.preventDefault(); // 阻止默认的表单提交行为
+
+          // 获取表单数据
+          let formData = {
+            account: $('#account').val(),
+            password: $('#password').val()
+          };
+
+          // 使用 AJAX 提交表单数据
+          $.ajax({
+            url: 'http://localhost:8080/user-info/login', // 数据接口地址
+            method: 'POST',
+            data: JSON.stringify(formData),
+            contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+            
+            //当 AJAX 请求成功完成时调用此回调函数。response 参数包含了从服务器接收到的数据。
+            success: function(response) {
+              // 处理服务器返回的数据
+              if (response.code == 200) {
+                // 将用户信息存储在 localStorage 中
+                //这行代码的作用是将 response.data.token 的值保存到浏览器的 localStorage 中，并且键名为 'token'。
+                //即一次用于存储令牌（token），另一次用于存储与该令牌相关的用户数据
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem(response.data.token, JSON.stringify(response.data));
+
+                $('#message').removeClass('error').addClass('success').text(response.message);
+                // 跳转到 collectinformation.html 页面
+                window.location.href = 'index.html';
+              } else {
+                $('#message').removeClass('success').addClass('error').text(response.message);
+              }
+            },
+            error: function(xhr, status, error) {
+              console.error('AJAX 请求失败:', status, error);
+              $('#message').removeClass('success').addClass('error').text('请求失败，请稍后再试');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

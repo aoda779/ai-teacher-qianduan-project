@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>考生管理</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./iconfont2/iconfont.css">
+
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+    <style>
+        select[lay-ignore] {
+            margin-left: 0px;
+            font-size: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 86%;
+        }
+
+        .studentmanagement {
+            height: 710px;
+        }
+    </style>
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="#">
+                    <h1 class="tm-site-title mb-0">智阅专辅</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="fas iconfont icon-biaoshilei_yonghuzu
+                              "></i> 考生管理
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="./smartscoring/papersubmit.html"
+                                id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="far iconfont icon-jiqiren"></i>
+                                <span>
+                                    智慧阅卷 <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./smartscoring/papersubmit.html">试卷上传</a>
+                                <a class="dropdown-item" href="./smartscoring/rules.html">批阅规则</a>
+                                <a class="dropdown-item" href="./smartscoring/papercheck.html">阅卷复核</a>
+                                <a class="dropdown-item" href="./smartscoring/papermanage.html">试卷管理</a>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas iconfont icon-shuji
+                              "></i>
+                                <span>
+                                    教师阅卷 <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./teacherscoring/paperread.html">阅卷</a>
+
+                                <a class="dropdown-item" href="#">阅卷结果</a>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas iconfont icon-anquan
+                              "></i>
+                                <span>
+                                    数据报告 <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./scoringpaper/studentreport.html">学生报告</a>
+                                <a class="dropdown-item" href="./scoringpaper/classreport.html">班级报告</a>
+                                <a class="dropdown-item" href="./scoringpaper/gradescoring.html">年级报告</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas iconfont icon-yonghu
+                                "></i>
+                                <span>
+                                    个人信息 <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="personalinformation/owninformation.html">个人信息</a>
+                                <a class="dropdown-item" href="./personalinformation/classinformation.html">班级管理</a>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link d-block" href="./login.html">
+                                <b>退出登录</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+
+            <div class="studentmanagement">
+                <div style="height: 10%">
+                    <div
+                        style="display: inline-block;margin-left: 40px;  background-color: white; border-radius: 21px;width: 55px;margin-top: 5px; white-space: nowrap;">
+                        <i class="iconfont icon-biaoshilei_yonghuzu" style=" margin-left:11px;  font-size: 33px;"></i>
+                    </div>
+                    <span style="color: white;font-size: 24px;margin-left: 12px;"> 考生管理</span>
+                </div>
+                <!--                <div>-->
+                <!--                    <button class="button1">从文件导入考生</button>-->
+                <!--                    <button class="button2">手动录取</button>-->
+                <!--                    <button class="button2">批量删除</button>-->
+                <!--                    <div style="position: relative; display: inline-block;">-->
+                <!--                        <input type="text" size="32" maxlength="35" placeholder="搜索姓名/学号/班级"-->
+                <!--                            style="padding-right: 35px;margin-left: 156px;" />-->
+                <!--                        <i class="iconfont2 icon-fangdajing"-->
+                <!--                            style="font-size: 25px; color: black; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <form class="layui-form layui-row layui-col-space16">
+                    <div class="test-table-reload-btn layui-inline" style="float: right;margin-right: 1%;">
+                        <div class="layui-inline">
+                            <input class="layui-input " style="height: 30px;border-radius:10px;" type="text" name="id"
+                                id="test-table-demoReload" autocomplete="on" placeholder="请输入姓名/学号/班级">
+                        </div>
+                        <button style="height: 30px;line-height: 30px;" lay-submit lay-filter="demo-table-search"
+                            class="layui-btn layui-btn-radius" lay-event="reloadData">搜索
+                        </button>
+                    </div>
+                </form>
+                <!-- 这里是下面的大表格 -->
+                <table class="layui-hide" id="test-table-reload"></table>
+                <!--<div style="background-color: rgba(255, 255, 255, 1);width: 900px;margin-left: 40px;">
+                <table class="table" style="margin-top: 23px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <th scope="col">学号</th>
+                            <th scope="col">学校</th>
+                            <th scope="col">年级</th>
+                            <th scope="col">班级</th>
+                            <th scope="col">操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    <tbody>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="cell-content">
+                                    <div class="cell-button">
+                                        <button class="toggleButton"></button>
+                                    </div>
+                                    <div class="cell-text">
+                                        <b>姓名</b>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <b>学号</b>
+                            </td>
+                            <td><b>学校</b></td>
+                            <td><b>年级</b></td>
+                            <td><b>班级</b></td>
+                            <td><b style="margin-right: 20px;color: rgb(11, 175, 245);">修改</b><b
+                                    style="color: rgb(11, 175, 245);">删除</b></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
+
+                <!--                <div style="margin-left: 748px;margin-top: 15px;">-->
+                <!--                    <button class="button3"> <i class="iconfont2 icon-zuojiantou-->
+                <!--                        "></i> </button>-->
+                <!--                    <button class="button3"  onclick="setActive(this)">1</button>-->
+                <!--                    <button class="button3"  onclick="setActive(this)">2</button>-->
+                <!--                    <button class="button3"  onclick="setActive(this)">3</button>-->
+                <!--                    <button class="button3"  onclick="setActive(this)">4</button>-->
+                <!--                    <button class="button3"  onclick="setActive(this)">5</button>-->
+                <!--                    <button class="button3"><i class="iconfont2 icon-youjiantou-->
+                <!--                        "></i></button>-->
+                <!--                </div>-->
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        function setActive(button) {
+            // 移除所有按钮的 'active' 类
+            document.querySelectorAll('.button3').forEach(btn => btn.classList.remove('active3'));
+            // 给点击的按钮添加 'active' 类
+            button.classList.add('active3');
+        }
+    </script>
+    <script>
+        // 这里是类选择器
+        document.querySelectorAll('.toggleButton').forEach(button => {
+            button.addEventListener('click', function () {
+                this.classList.toggle('clicked');
+            });
+        });
+    </script>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/moment.min.js"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="js/Chart.min.js"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="js/tooplate-scripts.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontColor = 'white';
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart,
+            barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+
+            $(window).resize(function () {
+                updateLineChart();
+                updateBarChart();
+            });
+        })
+    </script>
+
+    <!-- 这种方式允许你在 JavaScript 中方便地引用和操作这些模板，而不会让它们直接渲染在页面上。 -->
+    <script src="./layui/layui.js"></script>
+    <script type="text/html" id="TPL-treeTable-demo">
+    <div class="layui-inline">
+        <button class="button2" lay-event="navigate" >手动录入</button>
+        <button class="button2" lay-event="getCheckData">批量删除</button>
+    </div>
+
+</script>
+    <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <!--        <input type="checkbox" name="demoTableSwitch" lay-skin="switch" {{ d.demoTableSwitch }}>-->
+</script>
+
+    <script>
+        layui.use(['table', 'layer', 'jquery', 'form'], function () {
+            // // 从 Layui 中获取 table、layer 和 form 模块的实例
+
+            var treeTable = layui.table; // 表格模块
+            var layer = layui.layer;     // 弹层模块
+            var form = layui.form;       // 表单模块
+
+            let token = localStorage.getItem('token');
+
+            // 使用 table 模块渲染一个表格，并配置相关参数
+            //  treeTable.render：初始化表格组件并渲染到页面上的指定元素 (#test-table-reload)。
+            // url：定义了获取表格数据的 API 地址。
+            // headers：将从 localStorage 中获取的 token 添加到请求头中，用于身份验证。
+            // done 和 parseData：定义了数据加载完成后的回调函数以及如何解析服务器返回的数据格式。
+            // toolbar：指定了工具栏模板的选择器 (#TPL-treeTable-demo)，用于显示工具栏按钮（如“手动录入”、“批量删除”）。
+            var inst = treeTable.render({
+                //// 绑定表格元素的选择器
+                elem: '#test-table-reload',
+                url: 'http://localhost:8080/student-info/page',
+                maxHeight: '600px',
+                toolbar: '#TPL-treeTable-demo',
+                cols: [[
+                    { type: 'checkbox', fixed: 'left' },
+                    { type: 'numbers', fixed: 'left' },
+                    { field: 'name', title: '姓名', width: 160, fixed: 'left' },
+                    { field: 'id', title: '学号', width: 110, sort: true },
+                    { field: 'schoolName', title: '学校', width: 150 },
+                    { field: 'grade', title: '年级', width: 140, escape: false },
+                    { field: 'clazzName', title: '班级', width: 150 },
+                    { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 160 }
+                ]],
+                // // 开启分页功能
+                page: true,
+                //// 将 token 添加到请求头中，用于服务器端的身份验证
+                headers: {
+                    token: token
+                },
+                response: {
+                    statusCode: 200 // 重新规定成功的状态码为 200，table 组件默认为 0
+                },
+                done: function (res, curr, count) {
+                    if (res.code !== 200) {
+                        layer.msg('加载失败：' + res.msg || '未知错误');
+                    }
+                },
+                parseData: function (res) {
+                    return {
+                        "code": res.code,// 返回的状态码
+                        "msg": res.message,
+                        "count": res.data.total,
+                        "data": res.data.items
+                    };
+                }
+            });
+
+            // 表头工具栏工具事件
+            //  监听工具栏按钮点击事件。根据不同的事件类型 (obj.event) 执行相应的操作：
+            // navigate：调用 openAddStudent() 函数打开添加学生信息的界面。
+            // getCheckData：调用 removeData() 函数处理选中的行数据，可能涉及到批量删除。
+            treeTable.on('toolbar(' + inst.config.id + ')', function (obj) {
+                var config = obj.config;
+                var tableId = config.id;
+                var checkStatus = treeTable.checkStatus(tableId);
+                if (obj.event === "navigate") {
+                    // 如果点击的是导航按钮（例如“添加学生”），则调用 openAddStudent 函数打开添加学生的界面或功能
+                    //如果提供了这个参数，则表示正在编辑一条已有记录；如果没有提供，则表示新增一条记录。
+                    openAddStudent();
+                } else if (obj.event === "getCheckData") {
+                    // layer.alert(layui.util.escape(JSON.stringify(checkStatus.data)));
+                    removeData(checkStatus.data, this);
+                }
+            });
+
+            var $ = layui.$, active = {
+                reload: function () {
+                    var demoReload = $('#test-table-demoReload');
+
+                    //执行重载
+                    treeTable.reload('test-table-reload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            // // 将输入框中的值作为参数传递给服务器端查询条件
+                            param: demoReload.val()
+                        }
+                    });
+                }
+            };
+
+            // $('.test-table-reload-btn .layui-btn').on('click', function(){
+            //     var type = $(this).data('type');
+            //     active[type] ? active[type].call(this) : '';
+            // });
+
+            // 触发单元格工具事件（删除按钮）
+            treeTable.on('tool(test-table-reload)', function (obj) { // 双击 toolDouble
+                var data = obj.data;
+                // console.log(obj)
+
+                //这里是编辑按钮
+                if (obj.event === 'edit') {
+                    //如果你是从表格中的某一行触发编辑操作（比如点击行内的编辑按钮），那么你会传递该行的数据给 openAddStudent(data)
+                    openAddStudent(data);
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        removeData([data], this);
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
+
+            // 触发表格复选框选择
+            treeTable.on('checkbox(test-table-reload)', function (obj) {
+                console.log(obj)
+            });
+
+
+            // 批量删除数据 入参为行对象
+            let removeData = function (data, obj) {
+                $.ajax({
+                    url: 'http://localhost:8080/student-info/remove/batch',
+                    type: 'POST',
+                    contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+                    data: JSON.stringify(data),
+                    async: false,
+                    headers: {
+                        token: token
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result.code == 200) {
+                            console.log('删除成功');
+                            active['reload'].call(obj);
+                        } else {
+                            layer.msg('删除失败')
+                        }
+                    },
+                    error: function (err) {
+                        console.error('请求失败:', err);
+                        layer.msg('删除失败');
+                    }
+                });
+            }
+
+            let openAddStudent = function (data) {
+                let id;
+                if (data) {
+                    id = data.id;
+                }
+                //弹层模块（将addstudent.html变成一个小弹框形式）
+                layer.open({
+                    type: 2,
+                    title: '学生信息录入',
+                    //// 加载的页面 URL，带有查询参数
+                    content: './addstudent.html?id=' + id,
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['500px', '300px'],
+                    end: function (layero, index) {
+                        active['reload'].call(this);
+                    }
+                });
+            }
+
+            // 搜索提交
+            //这里调用了之前定义的 active 对象中的 reload 方法。active 是一个包含各种操作方法的对象，而 reload 方法用于重新加载表格数据。
+            // 使用 .call(this) 来显式地设置 this 上下文为当前表单元素，确保在 reload 方法内部可以正确引用和操作该表单。
+            form.on('submit(demo-table-search)', function () {
+                active['reload'].call(this);
+                return false; // 阻止默认 form 跳转
+            });
+        });
+    </script>
+</body>
+
+</html>

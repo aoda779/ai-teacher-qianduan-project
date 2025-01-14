@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>批阅规则</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="../css/templatemo-style.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../iconfont2/iconfont.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+    
+	-->
+    <style>
+        .clicked {
+            background-color: #4CAF50;
+            /* 绿色 */
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="#">
+                    <h1 class="tm-site-title mb-0">智阅专辅</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="fas iconfont icon-biaoshilei_yonghuzu
+                              "></i> 考生管理
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="./papersubmit.html" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far iconfont icon-jiqiren"></i>
+                                <span>
+                                    智慧阅卷 <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./papersubmit.html">试卷上传</a>
+                                <a class="dropdown-item" href="./rules.html">批阅规则</a>
+                                <a class="dropdown-item" href="./papercheck.html">阅卷复核</a>
+                                <a class="dropdown-item" href="./papermanage.html">试卷管理</a>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas iconfont icon-shuji
+                              "></i>
+                              <span>
+                                  教师阅卷 <i class="fas fa-angle-down"></i>
+                              </span>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="../teacherscoring/paperread.html">阅卷</a>
+
+                              <a class="dropdown-item" href="#">阅卷结果</a>
+
+                          </div>
+                      </li>
+
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas iconfont icon-anquan
+                              "></i>
+                              <span>
+                                  数据报告 <i class="fas fa-angle-down"></i>
+                              </span>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="../scoringpaper/studentreport.html">学生报告</a>
+                              <a class="dropdown-item" href="../scoringpaper/classreport.html">班级报告</a>
+                              <a class="dropdown-item" href="../scoringpaper/gradescoring.html">年级报告</a>
+
+                          </div>
+                      </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas iconfont icon-yonghu
+                                "></i>
+                                <span>
+                                    个人信息 <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="../personalinformation/owninformation.html">个人信息</a>
+                                <a class="dropdown-item" href="../personalinformation/classinformation.html">班级管理</a>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link d-block" href="../login.html">
+                                <b>退出登录</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 下面是四个按钮 -->
+        <div class="button4-container">
+            <button class="button4"  onclick="navigateTo('papersubmit.html')">试卷上传</button>
+            <button class="button4" onclick="navigateTo('rules.html')">批阅规则</button>
+            <button class="button4"  onclick="navigateTo('papercheck.html')">阅卷复核</button>
+            <button class="button4"  onclick="navigateTo('papermanage.html')">试卷管理</button>
+        </div>
+        <div class="container">
+
+            <div class="studentmanagement">
+                <div style=" display: flex;">
+                  <div class="firstrulebox">
+
+                  </div>
+                   <div class="secondrulebox">
+                    <h1 class="secondruleboxtopic" style="margin-left: 132px;margin-top: 20px;">批阅规则</h1>
+                    <!-- 这是第一个下拉框 -->
+                    <div style="width: 300px;">
+                      <select id="dropdown" name="options">
+                        <option value="" disabled selected>题型</option>
+                        <option value="option1">单选题</option>
+                        <option value="option2">多选题</option>
+                        <option value="option3">客观题</option>
+                      </select>
+                    </div>
+                    <!-- 这是分数框 -->
+                    <input type="text" placeholder="分数" style="width: 370px;
+                    padding-left: 13px;
+                    margin-left: 15px;
+                    margin-top: 40px;
+                    height: 40px;
+                    opacity: 1;
+                    border-radius: 2px;
+                    background: rgba(255, 255, 255, 1);
+
+                    border: 1px solid rgba(176, 177, 177, 1);"/>
+                    <!-- 这是分配老师的框 -->
+                    <div style="width: 300px;margin-top: 40px;">
+                      <select id="dropdown" name="options">
+                        <option value="" disabled selected>分配老师</option>
+                        <option value="option1">王老师</option>
+                        <option value="option2">华老师</option>
+                        <option value="option3">牛老师</option>
+                      </select>
+                    </div>
+
+                    <div style="width: 300px;margin-top: 40px;">
+                        <select id="dropdown" name="options">
+                          <option value="" disabled selected>是否自动评阅</option>
+                          <option value="option1">选择自动评阅</option>
+                          <option value="option2">取消自动评阅</option>
+
+                        </select>
+                      </div>
+
+                      <textarea placeholder="批阅规则和答案" style="
+                      width: 370px;
+                      margin-left: 15px;
+                      margin-top: 40px;
+                      height: 100px;
+                      opacity: 1;
+                      border-radius: 2px;
+                      background: rgba(255, 255, 255, 1);
+                      border: 1px solid rgba(176, 177, 177, 1);
+                      padding: 5px; /* 添加内边距 */
+                      box-sizing: border-box; /* 确保内边距和边框被包含在宽高内 */
+                  "></textarea>
+
+
+                  <div>
+                    <button class="nextbutton" style=" margin-top: 30px;margin-left: 140px;" onclick="changeButton(this, 'papercheck.html')">下一题</button>
+                </div>
+                  </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <script>
+          function changeButton(button, url) {
+            // 添加一个类来改变样式
+            button.classList.add("clicked");
+
+            // 如果你想移除之前的点击效果，可以在一定时间后移除类
+            // 使用setTimeout确保样式变化在跳转前可见
+            setTimeout(function () {
+                // 执行页面跳转
+                window.location.href = url;
+            }, 100); // 设置短暂延迟以确保用户看到样式变化
+        }
+        function setActive(button) {
+          // 移除所有按钮的 'active' 类
+          document.querySelectorAll('.button4').forEach(btn => btn.classList.remove('active4'));
+          // 给点击的按钮添加 'active' 类
+          button.classList.add('active4');
+        }
+      </script>
+    <script>
+        // 这里是类选择器
+        document.querySelectorAll('.toggleButton').forEach(button => {
+            button.addEventListener('click', function () {
+                this.classList.toggle('clicked');
+            });
+        });
+    </script>
+     <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="../js/moment.min.js"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="../js/Chart.min.js"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="../js/tooplate-scripts.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontColor = 'white';
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart;
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+
+            $(window).resize(function () {
+                updateLineChart();
+                updateBarChart();
+            });
+        })
+    </script>
+</body>
+
+</html>

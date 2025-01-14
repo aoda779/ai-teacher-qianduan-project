@@ -1,0 +1,44 @@
+{
+  "id": "4652175",
+  "name": "moban3655",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "41448124",
+      "name": "机器人",
+      "font_class": "jiqiren",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "41448131",
+      "name": "书籍",
+      "font_class": "shuji",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "41448177",
+      "name": "标识类_用户组",
+      "font_class": "biaoshilei_yonghuzu",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "41448178",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "41448179",
+      "name": "安全",
+      "font_class": "anquan",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}

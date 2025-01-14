@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>信息收集</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+  </head>
+
+  <body>
+
+   <div class="collectinformationbox" style="margin-left: 360px;margin-top: 50px;">
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="tm-block-title mb-4" style="font-size: 40px;margin-right: 610px;margin-top: 30px;">个人信息填写</h2>
+      </div>
+    </div>
+
+     <div style="display: flex;flex-direction: row;">
+      <div class="cell-content" style="margin-left: 35px;">
+        <div class="cell-button">
+            <button class="toggleButton"></button>
+        </div>
+        <div class="cell-text" >
+            <b>数据分析</b>
+        </div>
+    </div>
+
+    <div class="cell-content">
+      <div class="cell-button">
+          <button class="toggleButton"></button>
+      </div>
+      <div class="cell-text" >
+          <b>教学方案</b>
+      </div>
+  </div>
+  <div class="cell-content">
+    <div class="cell-button">
+        <button class="toggleButton"></button>
+    </div>
+    <div class="cell-text" >
+        <b>隐私保护</b>
+    </div>
+  </div>
+     </div>
+     <div style="display: flex;flex-direction: row;">
+      <input type="text" id="userName" placeholder="用户名" style="width: 400px;
+                    padding-left: 13px;
+                    margin-left: 45px;
+                    margin-top: 45px;
+                    height: 40px;
+                    opacity: 1;
+                    border-radius: 2px;
+                    background: rgba(255, 255, 255, 1);
+
+                    border: 1px solid rgba(176, 177, 177, 1);"/>
+      <input type="text" id="email" placeholder="电子邮箱" style="width: 400px;
+      padding-left: 13px;
+      margin-left: 55px;
+      margin-top: 45px;
+      height: 40px;
+      opacity: 1;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 1);
+
+      border: 1px solid rgba(176, 177, 177, 1);"/>
+     </div>
+
+
+     <div style="display: flex;flex-direction: row;">
+      <div style="margin-top: 70px;margin-left: 30px;">
+        <select id="dropdown" name="options" style="width: 400px;">
+          <option value="" disabled selected>学校</option>
+          <option value="option1">王老师</option>
+          <option value="option2">华老师</option>
+          <option value="option3">牛老师</option>
+        </select>
+      </div>
+      <div style="margin-top: 70px;margin-left: 40px;">
+        <select id="jx" name="options" style="width: 400px;">
+          <option value="" disabled selected>教学科目</option>
+          <option value="option1">语文</option>
+          <option value="option2">数学</option>
+          <option value="option3">英语</option>
+        </select>
+      </div>
+     </div>
+
+     <div style="display: flex;flex-direction: row;">
+      <div style="margin-top: 70px;margin-left: 30px;">
+        <select id="clazz" name="options" style="width: 400px;">
+          <option value="" disabled selected>负责班级</option>
+          <option value="option1">王老师</option>
+          <option value="option2">华老师</option>
+          <option value="option3">牛老师</option>
+        </select>
+      </div>
+      <div style="margin-top: 70px;margin-left: 40px;">
+        <select id="moth" name="options" style="width: 400px;">
+          <option value="" disabled selected>教学方法</option>
+          <option value="option1">王老师</option>
+          <option value="option2">华老师</option>
+          <option value="option3">牛老师</option>
+        </select>
+      </div>
+     </div>
+
+     <div style="display: flex;flex-direction: row;">
+      <div style="margin-top: 70px;margin-left: 30px;">
+        <select id="role" name="options" style="width: 400px;">
+          <option value="" disabled selected>权限</option>
+          <option value="option1">王老师</option>
+          <option value="option2">华老师</option>
+          <option value="option3">牛老师</option>
+        </select>
+      </div>
+      <div>
+        <button class="button4" style="margin-left: 166px; margin-top: 70px;" id="next">下一步</button>
+    </div>
+     </div>
+   </div>
+
+
+
+    </footer>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+  <script>
+      $(document).ready(function(){
+          $('#next').click(function () {
+              let userName = $("#userName").val();
+              let email = $("#email").val();
+              // 将用户信息存储在 localStorage 中
+              let token = localStorage.getItem('token');
+              let user = JSON.parse(localStorage.getItem(token));
+              let param={
+                  userName: userName,
+                  email: email,
+                  id: user.id
+              }
+
+              $.ajax({
+                  url: "http://localhost:8080/user-info/modified/detail",
+                  type: "POST",
+                  contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+                  data:JSON.stringify(param)
+                  ,headers: {
+                      token: token
+                  },
+                  success: function (data) {
+                      if (data.code == 200) {
+                          // alert("信息填写成功");
+                          window.location.href = "login.html";
+                      } else {
+                          alert("信息填写失败");
+                      }
+                  }
+              })
+          })
+      })
+  </script>
+  </body>
+</html>

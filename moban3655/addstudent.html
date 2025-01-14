@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="./layui/css/layui.css" rel="stylesheet">
+    <style>
+        .layui-btn-primary {
+            border-color: #d2d2d2;
+            background: none;
+            color: #5F5F5F !important;
+        }
+        .layui-form-item{
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" lay-filter="demo-val-filter">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">班级</label>
+        <div class="layui-input-block">
+            <select name="clazzId" id="clazzId" lay-filter="aihao">
+                <option value="">请选择</option>
+<!--                <option value="0">写作</option>-->
+<!--                <option value="1" selected>阅读</option>-->
+<!--                <option value="2">游戏</option>-->
+<!--                <option value="3">音乐</option>-->
+<!--                <option value="4">旅行</option>-->
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="./layui/layui.js"></script>
+<script>
+    layui.use(['form', 'laydate', 'util','jquery'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+        let token = localStorage.getItem('token');
+        // 获取 URL 参数
+        function getUrlParams() {
+            const url = new URL(window.location.href);
+            return new URLSearchParams(url.search);
+        }
+
+        let params = getUrlParams();
+        let id = params.get('id');
+
+        // 表单赋值
+        let assignment=function (){
+            let clazzId;
+            if (id !== 'undefined') {
+                layui.$.ajax({
+                    url: 'http://localhost:8080/student-info/get/detail?id=' + id,
+                    type: 'GET',
+                    headers: {
+                        token: token
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result.code == 200) {
+                            console.log('查询成功');
+                            let data = result.data;
+                            if (data) {
+                                clazzId= data.clazzId;
+                                form.val('demo-val-filter', {
+                                    "name": data.name,
+                                    "clazzId": data.clazzId
+                                });
+                                form.render()
+                            }
+                        }
+                    },
+                    error: function (err) {
+                        console.error('请求失败:', err);
+                        layer.msg('请求失败');
+                    }
+                })
+            }
+            layui.$.ajax({
+                url: 'http://localhost:8080/clazz-info/get/list',
+                type: 'GET',
+                headers: {
+                    token: token
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 200) {
+                        console.log('查询成功');
+                        let selectEvent = layui.$('#clazzId')[0];
+                        let data = result.data;
+                        if (data){
+                            for (let i = 0; i < data.length; i++) {
+                                let option = document.createElement("option");
+                                option.value=data[i].id;
+                                option.text=data[i].clazzName;
+                                selectEvent.appendChild(option);
+                            }
+                        }
+                        form.val('demo-val-filter', {
+                            "clazzId": clazzId
+                        });
+                        form.render('select');
+                    }
+                },
+                error: function (err) {
+                    console.error('请求失败:', err);
+                    layer.msg('请求失败');
+                }
+            })
+        }
+
+        
+        // 渲染表单
+        form.render();
+        // 渲染完毕后自动执行的方法
+        assignment();
+
+        // 提交事件
+        form.on('submit(demo1)', function(data){
+            var field = data.field; // 获取表单字段值
+            if (id !== 'undefined') {
+               field.id=id;
+            }
+            // 显示填写结果，仅作演示用
+            // layer.alert(JSON.stringify(field), {
+            //     title: '当前填写的字段值'
+            // });
+            let index = parent.layer.getFrameIndex(window.name);
+
+            // 此处可执行 Ajax 等操作
+            layui.$.ajax({
+                url: 'http://localhost:8080/student-info/save-or-up',
+                type: 'POST',
+                contentType: 'application/json; charset=UTF-8', // 设置内容类型为 JSON
+                data: JSON.stringify(field),
+                async: false,
+                headers: {
+                    token: token
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 200) {
+                        console.log('新增成功');
+                        parent.layer.close(index);
+                    } else {
+                        layer.msg('新增失败')
+                    }
+                },
+                error: function (err) {
+                    console.error('请求失败:', err);
+                    layer.msg('新增失败');
+                }
+            });
+            // …
+            return false; // 阻止默认 form 跳转
+        });
+
+    });
+</script>
+
+</body>
+</html>

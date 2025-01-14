@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开始阅卷</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:380,700">
+  <!-- https://fonts.google.com/specimen/Roboto -->
+  <link rel="stylesheet" href="../css/fontawesome.min.css">
+  <!-- https://fontawesome.com/ -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="../css/readpaper.css">
+  <link rel="stylesheet" href="../iconfont/iconfont.css">
+  <link rel="stylesheet" href="../iconfont2/iconfont.css">
+</head>
+
+<body>
+  <!-- 这是最上面一行的内容 -->
+  <div class="readpaper" style="display: flex; align-items: center;  gap: 5px;">
+    <a href="paperread.html" class="back-button">
+      <i class="fa fa-arrow-left"></i> 返回
+    </a>
+    <div class="label" style="margin-left: 10px;">
+      <span style="font-size:32px ;">阅卷</span>
+      <span style="font-size:32px ;">试卷名称</span>
+    </div>
+    <div class="submitbutton">提交阅卷结果</div>
+  </div>
+
+  <div style="display: flex;flex-direction: row;">
+    <!-- 下面是最左侧一行的内容 -->
+    <div class="readpaper2" style="display: flex;flex-direction: column;">
+      <div style="margin-top: 69px;height: 40px;font-size: 30px;margin-left: 12px;">
+        <select id="dropdown" name="options">
+          <option value="" disabled selected style="color: rgb(104, 104, 107);">题目</option>
+          <option value="option1">第一题</option>
+          <option value="option2">第二题</option>
+          <option value="option3">第三题</option>
+        </select>
+      </div>
+      <br>
+      <div style="margin-top: 15px;height: 40px;font-size: 30px;margin-left: 25px;">
+        <select id="dropdown" name="options">
+          <option value="" disabled selected style="color: rgb(104, 104, 107);">姓名</option>
+          <option value="option1">小王</option>
+          <option value="option2">小李</option>
+          <option value="option3">红红</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 这是右下角的内容 -->
+    <div class="readpaper3" style="display: flex;flex-direction: column;">
+      <!-- 这是最上面的内容 -->
+       <div style="height: 71px;display: flex;">
+        <div class="text1">
+          第一题
+        </div>
+        <div class="text2">
+          题型
+        </div>
+        <div class="text2">
+          姓名
+        </div>
+        <div class="text3" >
+          参考答案：
+        </div>
+       </div>
+       <!-- 这是那两条线 -->
+        <div class="line1">
+
+        </div>
+
+        <div class="line2">
+
+        </div>
+
+        <!-- 这是最下面的内容 -->
+         <div style="display: flex;flex-direction: row;">
+          <!-- 这是第一部分的内容 -->
+            <div class="firstbox">
+                <div style="font-size: 20px;font-weight: 400;margin-top: 20px;margin-left: 30px;">
+                  AI打分：
+                </div>
+                <div style="font-size: 20px;font-weight: 400;margin-top: 60px;margin-left: 30px;">
+                  老师打分:
+                </div>
+                <div>
+                  <!-- 这是分数框 -->
+                  <input type="text" placeholder="分数" style="width: 170px;
+                  padding-left: 13px;
+                  margin-left: 30px;
+                  margin-top: 10px;
+                  height: 37px;
+                  opacity: 1;
+                  border-radius: 2px;
+                  background: rgba(255, 255, 255, 1);
+                  
+                  border: 1px solid rgba(176, 177, 177, 1);"/>
+                </div>
+            </div>
+
+            <!-- 这是第二部分内容 -->
+             <div class="secondbox">
+              <div style="font-size: 20px;font-weight: 400;margin-top: 20px;margin-left: 100px;">
+                AI评价：
+              </div>
+              <div>
+                <textarea  style="
+                      width: 400px;
+                      margin-left: 100px;
+                      margin-top: 10px;
+                      height: 150px;
+                      opacity: 1;
+                      border-radius: 2px;
+                      background: rgba(255, 255, 255, 1);
+                      border: 1px solid rgba(176, 177, 177, 1);
+                      padding: 5px; /* 添加内边距 */
+                      box-sizing: border-box; /* 确保内边距和边框被包含在宽高内 */
+                  "></textarea>
+                  
+              </div>
+             </div>
+
+             <div class="secondbox">
+              <div style="font-size: 20px;font-weight: 400;margin-top: 20px;margin-left: 100px;">
+                老师评价：
+              </div>
+              <div>
+                <textarea  style="
+                      width: 400px;
+                      margin-left: 100px;
+                      margin-top: 10px;
+                      height: 150px;
+                      opacity: 1;
+                      border-radius: 2px;
+                      background: rgba(255, 255, 255, 1);
+                      border: 1px solid rgba(176, 177, 177, 1);
+                      padding: 5px; /* 添加内边距 */
+                      box-sizing: border-box; /* 确保内边距和边框被包含在宽高内 */
+                  "></textarea>
+                  
+              </div>
+             </div>
+
+             <div style="display: flex;flex-direction: column;">
+              <div class="lastsubmitbutton">重置评价</div>
+              <div class="lastsubmitbutton">批改完成</div>
+              <div class="lastsubmitbutton">重新批改</div>
+              <div class="lastsubmitbutton">下一份</div>
+             </div>
+         </div>
+    </div>
+  </div>
+</body>
+
+</html>

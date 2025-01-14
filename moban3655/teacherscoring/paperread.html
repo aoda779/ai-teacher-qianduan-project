@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>阅卷</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="../css/templatemo-style.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../iconfont2/iconfont.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+      <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+            <a class="navbar-brand" href="#">
+                <h1 class="tm-site-title mb-0">智阅专辅</h1>
+            </a>
+            <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars tm-nav-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto h-100">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="fas iconfont icon-biaoshilei_yonghuzu
+                          "></i> 考生管理
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../smartscoring/papersubmit.html" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far iconfont icon-jiqiren"></i>
+                            <span>
+                                智慧阅卷 <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../smartscoring/papersubmit.html">试卷上传</a>
+                            <a class="dropdown-item" href="../smartscoring/rules.html">批阅规则</a>
+                            <a class="dropdown-item" href="../smartscoring/papercheck.html">阅卷复核</a>
+                            <a class="dropdown-item" href="../smartscoring/papermanage.html">试卷管理</a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas iconfont icon-shuji
+                          "></i>
+                          <span>
+                              教师阅卷 <i class="fas fa-angle-down"></i>
+                          </span>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../teacherscoring/paperread.html">阅卷</a>
+
+                          <a class="dropdown-item" href="#">阅卷结果</a>
+
+                      </div>
+                  </li>
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas iconfont icon-anquan
+                          "></i>
+                          <span>
+                              数据报告 <i class="fas fa-angle-down"></i>
+                          </span>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../scoringpaper/studentreport.html">学生报告</a>
+                          <a class="dropdown-item" href="../scoringpaper/classreport.html">班级报告</a>
+                          <a class="dropdown-item" href="../scoringpaper/gradescoring.html">科目报告</a>
+
+                      </div>
+                  </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas iconfont icon-yonghu
+                            "></i>
+                            <span>
+                                个人信息 <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../personalinformation/owninformation.html">个人信息</a>
+                            <a class="dropdown-item" href="../personalinformation/classinformation.html">班级管理</a>
+
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-block" href="../login.html">
+                            <b>退出登录</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- 下面是两个按钮 -->
+        <div class="button4-container" style="padding-left: 235px;">
+            <button class="button4"  onclick="navigateTo('paperread.html')" >阅卷</button>
+            <button class="button4" onclick="navigateTo('#')">阅卷结果</button>
+
+        </div>
+        <div class="container">
+
+            <div class="studentmanagement">
+                <div>
+                    <div
+                        style="display: inline-block;margin-left: 40px;  background-color: white; border-radius: 21px;width: 55px;margin-top: 5px; white-space: nowrap;">
+                        <i class="iconfont icon-shuji" style=" margin-left:11px;  font-size: 33px;"></i>
+                    </div>
+                    <span style="color: white;font-size: 24px;margin-left: 12px;">教师阅卷</span>
+                </div>
+
+                <!-- 这里是下面的大表格 -->
+                <div style="background-color: rgba(255, 255, 255, 1);width: 900px;margin-left: 40px;">
+                    <table class="table" style="margin-top: 23px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col">班级</th>
+                                <th scope="col">年级</th>
+                                <th scope="col">科目</th>
+                                <th scope="col">时间</th>
+                                <th scope="col">操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a>
+                                </td>
+
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a></td>
+
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a></td>
+
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a></td>
+
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a></td>
+
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a></td>
+
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="cell-content">
+                                        <div class="cell-button">
+                                            <button class="toggleButton"></button>
+                                        </div>
+                                        <div class="cell-text">
+                                            <b>名称</b>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <b>班级</b>
+                                </td>
+                                <td><b>年级</b></td>
+                                <td><b>科目</b></td>
+                                <td><b>时间</b></td>
+                                <td><a href="./startread.html" class="startbutton">开始阅卷</a></td>
+
+                            </tr>
+
+
+
+                    </table>
+                </div>
+
+                <div style="margin-left: 748px;margin-top: 15px;">
+                    <button class="button3"> <i class="iconfont2 icon-zuojiantou
+                        "></i> </button>
+                    <button class="button3"  onclick="setActive(this)">1</button>
+                    <button class="button3"  onclick="setActive(this)">2</button>
+                    <button class="button3"  onclick="setActive(this)">3</button>
+                    <button class="button3"  onclick="setActive(this)">4</button>
+                    <button class="button3"  onclick="setActive(this)">5</button>
+                    <button class="button3"><i class="iconfont2 icon-youjiantou
+                        "></i></button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <script>
+        function setActive(button) {
+          // 移除所有按钮的 'active' 类
+          document.querySelectorAll('.button4').forEach(btn => btn.classList.remove('active4'));
+          // 给点击的按钮添加 'active' 类
+          button.classList.add('active4');
+        }
+      </script>
+    <script>
+        // 这里是类选择器
+        document.querySelectorAll('.toggleButton').forEach(button => {
+            button.addEventListener('click', function () {
+                this.classList.toggle('clicked');
+            });
+        });
+    </script>
+      <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+     <script src="../js/jquery-3.3.1.min.js"></script>
+     <!-- https://jquery.com/download/ -->
+     <script src="../js/moment.min.js"></script>
+     <!-- https://momentjs.com/ -->
+     <script src="../js/Chart.min.js"></script>
+     <!-- http://www.chartjs.org/docs/latest/ -->
+     <script src="../js/bootstrap.min.js"></script>
+     <!-- https://getbootstrap.com/ -->
+     <script src="../js/tooplate-scripts.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontColor = 'white';
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart;
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+
+            $(window).resize(function () {
+                updateLineChart();
+                updateBarChart();
+            });
+        })
+    </script>
+</body>
+
+</html>
